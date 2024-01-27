@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu de Roulette</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #game-container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    #resultat {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    #portefeuille {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    label {
+      font-size: 1.2em;
+      margin-right: 10px;
+      color: #333;
+    }
+
+    input {
+      padding: 5px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 8px 15px;
+      font-size: 1em;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    var portefeuille = 100;
+
+    function jouer() {
+      var mise = parseFloat(document.getElementById('mise').value);
+      var resultatDiv = document.getElementById('resultat');
+      var portefeuilleDiv = document.getElementById('portefeuille');
+
+      if (isNaN(mise) || mise <= 0 || mise > portefeuille) {
+        resultatDiv.innerText = "Veuillez entrer une mise valide.";
+        return;
+      }
+
+      var numeroChoisi = parseInt(document.getElementById('numero').value);
+      var numeroGagnant = Math.floor(Math.random() * 36) + 1;
+
+      resultatDiv.innerText = "Numéro gagnant : " + numeroGagnant;
+
+      if (numeroChoisi === numeroGagnant) {
+        portefeuille += mise * 35;
+        resultatDiv.innerText += "\nVous avez gagné ! Vous avez maintenant " + portefeuille + " dans votre portefeuille.";
+      } else {
+        portefeuille -= mise;
+        resultatDiv.innerText += "\nVous avez perdu ! Vous avez maintenant " + portefeuille + " dans votre portefeuille.";
+
+        if (portefeuille <= 0) {
+          resultatDiv.innerText += "\nVous n'avez plus d'argent. Nouvelle partie !";
+          portefeuille = 100;
+        }
+      }
+
+      portefeuilleDiv.innerText = "Portefeuille : " + portefeuille;
+    }
+  </script>
+</head>
+<body>
+
+  <div id="game-container">
+    <h2>Jeu de Roulette</h2>
+
+    <label for="mise">Misez de l'argent :</label>
+    <input type="text" id="mise" placeholder="Entrez votre mise">
+
+    <br>
+
+    <label for="numero">Choisissez un numéro (1-36) :</label>
+    <input type="text" id="numero" placeholder="Entrez un numéro">
+
+    <br>
+
+    <button onclick="jouer()">Jouer</button>
+
+    <div id="resultat"></div>
+    
+    <div id="portefeuille">Portefeuille : 100</div>
+  </div>
+
+</body>
+</html>
