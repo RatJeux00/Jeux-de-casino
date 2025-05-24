@@ -1,0 +1,21 @@
+.cnt {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(97, 97, 97, 0.226);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+button {
+    margin: 5px 0; /* Ajoute un espace entre les boutons */
+    padding: 10px 20px; /* Ajuste la taille des boutons */
+    font-size: 16px; /* Rend le texte plus lisible */
+    cursor: pointer;
+}

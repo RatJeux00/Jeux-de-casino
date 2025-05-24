@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine a sous</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Machine.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cnt">
+        <h1>Machine à sous</h1>
+        <div id="machine">
+            <div class="wallet"> Porte Feuille = 
+                <div id="wallet"></div>
+            </div>
+            <div class="cntCell">
+                <div id="cellA" class="cell"></div>
+                <div id="cellB" class="cell"></div>
+                <div id="cellC" class="cell"></div>
+            </div>
+            <label for="mise">Mise : </label>
+            <input type="number" name="mise" id="mise" placeholder="Entre une mise"> 
+            <button class="button" onclick="machine()">Miser</button>
+        </div>
+        <div>Resultat: </div>
+        <div id="result"></div>
+    </div>
+    <button class="retour" onclick="location.href='../home/home.html'">Retour</button>
+</body>
+<script src="machine_a_sous.js"></script>
+</html>

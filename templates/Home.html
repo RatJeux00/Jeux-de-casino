@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Jeux</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cnt">
+        <div class="title">
+            <h1>Menu des jeux</h1>
+        </div>
+        <button onclick="location.href='/Machine'">Machine a sous</button>
+        <button onclick="location.href='/Morpion'">Morpion</button>
+        <button onclick="location.href='/Roulette'">Roulette Russe</button>
+
+    </div>
+</body>
+</html>
