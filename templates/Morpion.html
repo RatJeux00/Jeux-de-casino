@@ -14,10 +14,10 @@
         <p id="result"></p>
         <button id="buttonClear">Réinisilisation</button>      
     </div>
-    <button class="retour" onclick="location.href='../home/home.html'">Retour</button>
+    <button class="retour" onclick="location.href='/'">Retour</button>
     
 </body>
-<script src="Morpion.js"></script>
+<script src="{{ url_for('static', filename='js/Morpion.js') }}"></script>
 <script>
     function clear(){
         console.log("j'appuie")
