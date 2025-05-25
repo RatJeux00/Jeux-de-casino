@@ -1,4 +1,4 @@
-.cnt {
+#Menu {
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -11,6 +11,20 @@
 
 .title{
     margin-bottom: 20px;
+    position: relative;
+    justify-content: center;
+}
+
+#Machine {
+    background-image: url('../images/Icon_Machine.png');
+    object-fit: cover;
+} /* continué la mise en forme du menu */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    width: 250px;
+    height: 250px;
 }
 
 button {

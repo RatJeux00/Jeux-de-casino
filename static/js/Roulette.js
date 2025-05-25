@@ -1,18 +1,19 @@
 let currentPlayer = document.getElementById("Bot");
 
-let bulletPosition = -1; // Position de la balle dans le barillet
-let currentPosition = 0; // Position actuelle du barillet
+let bulletPosition = -1;
+let currentPosition = 0;
 
 const result = document.getElementById("result");
+const revolverWrapper = document.getElementById("RevolverWrapper");
 const revolver = document.getElementById("Revolver");
 
 const updateDirection = () => {
+    revolverWrapper.classList.remove("rotate-left", "rotate-right");
+
     if (currentPlayer.id === 'Bot') {
-        revolver.classList.remove("rotate-right");
-        revolver.classList.add("rotate-left");
+        revolverWrapper.classList.add("rotate-left");
     } else {
-        revolver.classList.remove("rotate-left");
-        revolver.classList.add("rotate-right");
+        revolverWrapper.classList.add("rotate-right");
     }
 };
 
@@ -20,16 +21,14 @@ let spin = () => {
     document.getElementById("Player").classList.remove("dead");
     document.getElementById("Bot").classList.remove("dead");
 
-    bulletPosition = Math.floor(Math.random() * 6); // Place la balle
-    currentPosition = 0; // Réinitialise le barillet
-    console.log("💣 Balle dans la chambre :", bulletPosition);
-
+    bulletPosition = Math.floor(Math.random() * 6);
+    currentPosition = 0;
     result.textContent = "🔁 Barillet tourné. Bonne chance !";
 
-    revolver.style.animation = "rotate 1s ease";
-    setTimeout(() => {
-        revolver.style.animation = "";
-    }, 1000);
+    // Redémarre proprement l'animation
+    revolver.classList.remove("reload-spin");
+    void revolver.offsetWidth; // force reflow
+    revolver.classList.add("reload-spin");
 };
 
 let trigger = () => {
@@ -38,15 +37,13 @@ let trigger = () => {
         return;
     }
 
-    console.log("🔫 Tentative avec chambre :", currentPosition);
-
     if (currentPosition === bulletPosition) {
         currentPlayer.classList.add('dead');
         result.textContent = `💥 Bang ! ${currentPlayer.id} a perdu ! 😱`;
-        bulletPosition = -1; // Réinitialise la partie
+        bulletPosition = -1;
     } else {
         result.textContent = `😅 Clic ! ${currentPlayer.id} a survécu.`;
-        currentPosition = (currentPosition + 1) % 6; // Avance le barillet
+        currentPosition = (currentPosition + 1) % 6;
 
         currentPlayer = currentPlayer.id === 'Bot'
             ? document.getElementById("Player")

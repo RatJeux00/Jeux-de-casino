@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="cnt">
-        <div class="title">
-            <h1>Menu des jeux</h1>
+    <div class="container">
+        <h1 class="title">🎮 Menu des jeux 🎮</h1>
+        <div id="Menu">
+            <button onclick="location.href='/Machine'" id="Machine" class="btn">Machine a sous</button>
+            <button onclick="location.href='/Morpion'" id="Morpion" class="btn">Morpion</button>
+            <button onclick="location.href='/Roulette'" id="Roulette" class="btn">Roulette Russe</button>
         </div>
-        <button onclick="location.href='/Machine'">Machine a sous</button>
-        <button onclick="location.href='/Morpion'">Morpion</button>
-        <button onclick="location.href='/Roulette'">Roulette Russe</button>
-
     </div>
 </body>
 </html>

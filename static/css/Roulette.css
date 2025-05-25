@@ -1,17 +1,3 @@
-body {
-    background: linear-gradient(145deg, #1c1c1c, #2f2f2f);
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.container {
-    text-align: center;
-    padding-top: 40px;
-}
-
 .title {
     font-size: 2.5rem;
     margin-bottom: 30px;
@@ -28,11 +14,7 @@ body {
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 0 20px #000;
-    transition: 0.3s;
-}
-
-.dead {
-    background-image: url(../images/Crane.png) !important;
+    perspective: 1000px;
 }
 
 .character {
@@ -47,51 +29,39 @@ body {
     background-image: url("../images/Bot.png");
 }
 
-#Revolver {
-    background-image: url("../images/Revolver.png");
-    width: 80px;
-    height: 80px;
-    background-size: cover;
-    transition: transform 0.5s ease; /* Animation de rotation */
-}
-
-#Roulette {
-    perspective: 1000px; /* effet 3D */
-}
-
-.rotate-left {
-    transform: rotateY(0deg); /* vers le Bot à gauche */
-}
-
-.rotate-right {
-    transform: rotateY(180deg); /* vers le Player à droite */
-}
-
-
 #Player {
     background-image: url("../images/Player.png");
 }
 
+.dead {
+    background-image: url("../images/Crane.png") !important;
+}
+
+#RevolverWrapper {
+    transition: transform 0.5s ease;
+}
+
+.rotate-left {
+    transform: rotateY(0deg);
+}
+
+.rotate-right {
+    transform: rotateY(180deg);
+}
+
+.revolver {
+    background-image: url("../images/Revolver.png");
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+}
+
+.reload-spin {
+    animation: reload-spin 1s ease;
+}
+
 .pulse {
     animation: pulse 2s infinite;
-}
-
-.action-btn {
-    background: #1e90ff;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    color: white;
-    margin: 10px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.action-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(30, 144, 255, 0.6);
 }
 
 #result {
@@ -99,21 +69,6 @@ body {
     margin-top: 20px;
     animation: fadeIn 0.5s;
 }
-
-.retour {
-    margin-top: 20px;
-    background: #555;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-}
-
-.retour:hover {
-    background: #777;
-}
-
 /* Animations */
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
@@ -125,8 +80,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes rotate {
+@keyframes reload-spin {
     0% { transform: rotate(0); }
-    100% { transform: rotate(720deg); }
+    100% { transform: rotate(-720deg); }
 }
-
