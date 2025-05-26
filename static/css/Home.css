@@ -1,12 +1,13 @@
 #Menu {
     display: flex;
-    flex-direction: column;
     padding: 20px;
     background-color: rgba(97, 97, 97, 0.226);
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     border-radius: 10px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 .title{
@@ -17,19 +18,47 @@
 
 #Machine {
     background-image: url('../images/Icon_Machine.png');
-    object-fit: cover;
-} /* continué la mise en forme du menu */
+}
+
+#Morpion {
+    background-image: url('../images/Icon_morpion.png');
+    margin-bottom: 10px ;
+}
+
+#Roulette{
+    background-image: url('../images/Icon_roulette-russe.png');
+}
 
 .btn {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 120px;
+    border: none;
+    border-radius: 12px;
+    background-color: #222;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.icon {
+    min-width: 64px;
+    min-height: 64px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 5px;
 }
 
 button {
-    margin: 5px 0; /* Ajoute un espace entre les boutons */
-    padding: 10px 20px; /* Ajuste la taille des boutons */
-    font-size: 16px; /* Rend le texte plus lisible */
+    margin: 5px 0; 
+    padding: 10px 20px; 
+    font-size: 16px;
     cursor: pointer;
 }
