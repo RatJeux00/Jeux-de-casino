@@ -1,36 +1,43 @@
-.cnt {
-    text-align: center;
+#Morpion {
+    padding: 20px;
+    background-color: rgba(97, 97, 97, 0.226);
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px black;
 }
 
-.title {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #333;
-}
-
-#morpion {
+#grid {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 5px;
     justify-content: center;
     align-items: center;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 10px;
+    margin: 20px auto;
+}
+
+#result {
+    width: 270px;
+    height: 11px;
 }
 
 .cell {
+    width: 80px;
+    height: 80px;
+    background-color: #8a8a8a;
+    font-size: 2rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
-    background-color: lightgray;
-    font-size: 2em;
+    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
 }
 
 .cell:hover {
-    background-color: #ddd;
+    background-color: #ccc;
 }
 
 #result{

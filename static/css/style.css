@@ -38,6 +38,13 @@ body {
     box-shadow: 0 8px 20px rgba(30, 144, 255, 0.6);
 }
 
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
+    text-shadow: 0 10px 20px rgb(0, 0, 0);
+}
+
 .retour{
     position: absolute;
     bottom: 0;
@@ -53,4 +60,9 @@ body {
 
 .retour:hover {
     background: #777;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

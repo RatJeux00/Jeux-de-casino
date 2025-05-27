@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morpion</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Morpion.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Morpion.css') }}">
 </head>
 <body>
-    <div class="cnt">
-        <h1>Morpion</h1>
-        <div id="morpion" class="grid"></div>
-        <p id="result"></p>
-        <button id="buttonClear">Réinisilisation</button>      
+    <div class="container">
+        <h1 class="title">✖️Morpion⭕</h1>
+        
+        <div id="Morpion">
+            <div id="grid"></div>
+            <p id="result"></p>
+        </div>
+        <button id="resetBtn" class="btn">🔁 Réinitialiser</button>
     </div>
+
     <button class="retour" onclick="location.href='/'">← Retour</button>
-    
+
+    <script src="{{ url_for('static', filename='js/Morpion.js') }}"></script>
 </body>
-<script src="{{ url_for('static', filename='js/Morpion.js') }}"></script>
-<script>
-    function clear(){
-        console.log("j'appuie")
-    }
-</script>
 </html>
