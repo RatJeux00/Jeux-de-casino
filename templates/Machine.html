@@ -8,25 +8,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="cnt">
-        <h1>Machine à sous</h1>
+    <div class="container">
+        <h1 class="title">🎰 Machine à Sous</h1>
+
         <div id="machine">
-            <div class="wallet"> Porte Feuille = 
-                <div id="wallet"></div>
+            <!-- Porte-feuille -->
+            <div class="wallet">
+                <span>Porte-feuille :</span>
+                <span id="wallet">1000</span>
             </div>
+
+            <!-- Cellules -->
             <div class="cntCell">
                 <div id="cellA" class="cell"></div>
                 <div id="cellB" class="cell"></div>
                 <div id="cellC" class="cell"></div>
             </div>
-            <label for="mise">Mise : </label>
-            <input type="number" name="mise" id="mise" placeholder="Entre une mise"> 
-            <button class="button" onclick="machine()">Miser</button>
+
+            <!-- Mise + Bouton -->
+            <div class="bet-section">
+                <label for="mise">💰 Mise :</label>
+                <input type="number" id="mise" name="mise" placeholder="Entre une mise" min="1">
+                <button class="btn" onclick="machine()">🎯 Miser</button>
+            </div>
+
+            <!-- Résultat -->
+            <div class="result-section">
+                <strong>Résultat :</strong>
+                <div id="result"></div>
+            </div>
         </div>
-        <div>Resultat: </div>
-        <div id="result"></div>
+
+        <!-- Bouton retour -->
+        <button class="retour" onclick="location.href='/'">← Retour</button>
     </div>
-    <button class="retour" onclick="location.href='/'">← Retour</button>
 </body>
-<script src="machine_a_sous.js"></script>
+<script src="{{ url_for('static', filename='js/Machine.js') }}"></script>
 </html>

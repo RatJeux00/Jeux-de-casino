@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
 </head>
 <body>
-    <button onclick="fire()">Appuis</button>
+      <div class="container">
+    <h1 class="title">Machine à sous</h1>
+    <div id="machine">
+      <div class="wallet">Porte Feuille = <span id="wallet">1000</span></div>
+      <div class="cntCell">
+        <div class="cell"><div class="reel" id="reelA"></div></div>
+        <div class="cell"><div class="reel" id="reelB"></div></div>
+        <div class="cell"><div class="reel" id="reelC"></div></div>
+      </div>
+      <div id="result"></div>
+      <label for="mise">Mise :</label>
+      <input type="number" id="mise" placeholder="Entre une mise">
+      <button class="button" onclick="machine()">Miser</button>
+    </div>
+  </div>
 </body>
-<script src="{{ url_for('static', filename='js/test.js')}}"></script>
+<script src="{{ url_for('static', filename='js/test.js') }}"></script>
 </html>

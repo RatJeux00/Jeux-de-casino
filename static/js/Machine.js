@@ -1,57 +1,68 @@
 const walletElement = document.getElementById('wallet');
+const resultElement = document.getElementById('result');
+const inputMise = document.getElementById('mise');
+const cells = {
+    A: document.getElementById('cellA'),
+    B: document.getElementById('cellB'),
+    C: document.getElementById('cellC')
+};
+
+const fruits = ["banane", "fraise", "orange", "pomme"];
 let wallet = 1000;
 walletElement.textContent = wallet;
 
-function machine() {
-    let inputMise = document.getElementById('mise');
-    let mise = parseInt(inputMise.value);
-    console.log(mise);
+function updateWallet(amount) {
+    wallet += amount;
+    walletElement.textContent = wallet;
+}
+
+function resetCells() {
+    Object.values(cells).forEach(cell => {
+        cell.className = 'cell rolling'; // Reset and add rolling animation
+    });
+}
+
+function revealFruit(cell, index, delay) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            cell.classList.remove('rolling');
+            cell.classList.add(fruits[index]);
+            resolve();
+        }, delay);
+    });
+}
+
+function getRandomFruitIndex() {
+    return Math.floor(Math.random() * fruits.length);
+}
+
+function validateBet(mise) {
     if (!mise || mise <= 0 || mise > wallet) {
-        result.innerHTML = 'Mise invalide ou supérieure au montant du portefeuille.';
-        return;
+        resultElement.textContent = 'Mise invalide ou supérieure au montant du portefeuille.';
+        return false;
     }
+    return true;
+}
 
-    const fruits = ["banane", "fraise", "orange", "pomme"];
-    
-    const cellA = document.getElementById('cellA');
-    const cellB = document.getElementById('cellB');
-    const cellC = document.getElementById('cellC');
+async function machine() {
+    const mise = parseInt(inputMise.value);
+    if (!validateBet(mise)) return;
 
-    cellA.className = 'cell';
-    cellB.className = 'cell';
-    cellC.className = 'cell';
+    resetCells();
 
-    cellA.classList.add('rolling');
-    cellB.classList.add('rolling');
-    cellC.classList.add('rolling');
+    const results = [getRandomFruitIndex(), getRandomFruitIndex(), getRandomFruitIndex()];
 
-    let a = Math.floor(Math.random() * 4);
-    let b = Math.floor(Math.random() * 4);
-    let c = Math.floor(Math.random() * 4);
+    await revealFruit(cells.A, results[0], 500);
+    await revealFruit(cells.B, results[1], 1000);
+    await revealFruit(cells.C, results[2], 1500);
 
-    setTimeout(() => {
-        cellA.classList.remove('rolling');
-        cellA.classList.add(fruits[a]);
-    }, 500); // Affiche le fruit dans cellA après 500ms
+    const [a, b, c] = results;
 
-    setTimeout(() => {
-        cellB.classList.remove('rolling');
-        cellB.classList.add(fruits[b]);
-    }, 1000); // Affiche le fruit dans cellB après 1000ms
-
-    setTimeout(() => {
-        cellC.classList.remove('rolling');
-        cellC.classList.add(fruits[c]);
-
-        const result = document.getElementById('result');
-        if (a === b && b === c) {
-            result.innerHTML = 'Tu as gagné(e) !!!';
-            wallet = wallet + 2 * mise;
-        } else {
-            result.innerHTML = 'Tu as perdu, recommence.';
-            wallet = wallet - mise;
-        }
-
-        walletElement.textContent = wallet;
-    }, 1500); // Affiche le fruit dans cellC après 1500ms et calcule le résultat
+    if (a === b && b === c) {
+        resultElement.textContent = '🎉 Tu as gagné(e) !!!';
+        updateWallet(mise * 2);
+    } else {
+        resultElement.textContent = '😢 Tu as perdu, recommence.';
+        updateWallet(-mise);
+    }
 }
