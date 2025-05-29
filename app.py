@@ -9,7 +9,7 @@ def accueil():
 
 @app.route("/Bandit-Manchot")
 def Machine():
-    return render_template("Machine.html")
+    return render_template("BanditManchot.html")
 
 @app.route("/Morpion")
 def Morpion():

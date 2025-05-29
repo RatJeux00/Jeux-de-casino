@@ -60,18 +60,18 @@
 }
 
 /* Fruits */
-.banane  { background-image: url('../images/banane.png'); }
-.fraise  { background-image: url('../images/fraise.png'); }
-.orange  { background-image: url('../images/orange.png'); }
-.pomme   { background-image: url('../images/pomme.png'); }
+.banane  { background-image: url('../images/BanditManchot/banane.png'); }
+.fraise  { background-image: url('../images/BanditManchot/fraise.png'); }
+.orange  { background-image: url('../images/BanditManchot/orange.png'); }
+.pomme   { background-image: url('../images/BanditManchot/pomme.png'); }
 
 /* Animation des rouleaux */
 @keyframes roll {
-    0%   { background-image: url('../images/banane.png'); }
-    25%  { background-image: url('../images/fraise.png'); }
-    50%  { background-image: url('../images/pomme.png'); }
-    75%  { background-image: url('../images/orange.png'); }
-    100% { background-image: url('../images/banane.png'); }
+    0%   { background-image: url('../images/BanditManchot/banane.png'); }
+    25%  { background-image: url('../images/BanditManchot/fraise.png'); }
+    50%  { background-image: url('../images/BanditManchot/pomme.png'); }
+    75%  { background-image: url('../images/BanditManchot/orange.png'); }
+    100% { background-image: url('../images/BanditManchot/banane.png'); }
 }
 
 .rolling {

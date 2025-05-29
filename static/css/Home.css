@@ -17,20 +17,20 @@
 }
 
 #Machine {
-    background-image: url('../images/Icon_Machine.png');
+    background-image: url('../images/Home/Icon_Machine.png');
 }
 
 #Morpion {
-    background-image: url('../images/Icon_morpion.png');
+    background-image: url('../images/Home/Icon_morpion.png');
     margin-bottom: 10px ;
 }
 
 #Roulette{
-    background-image: url('../images/Icon_roulette-russe.png');
+    background-image: url('../images/Home/Icon_roulette-russe.png');
 }
 
 #test{
-    background-image: url('../images/test.png');
+    background-image: url('../images/Home/Icon_test.png');
 }
 
 .btn {
