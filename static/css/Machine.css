@@ -23,25 +23,40 @@
 
 /* Cellules */
 .cntCell {
+    background-color: #515151;
     display: flex;
     justify-content: center;
     gap: 15px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .cell {
     width: 80px;
-    height: 80px;
+    height: 80px;overflow: hidden;
     background-color: #999;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
     border: 3px solid #333;
     border-radius: 8px;
+    overflow: hidden;
     transition: transform 0.2s ease;
 }
 
 .cell:hover {
     transform: scale(1.05);
+}
+
+.reel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.reel img {
+    width: 100%;
+    height: 80px;
+    display: block;
 }
 
 /* Fruits */

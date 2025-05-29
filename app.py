@@ -7,7 +7,7 @@ app = Flask(__name__)
 def accueil():
     return render_template("Home.html")
 
-@app.route("/Machine")
+@app.route("/Bandit-Manchot")
 def Machine():
     return render_template("Machine.html")
 

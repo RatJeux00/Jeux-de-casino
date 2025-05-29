@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine a sous</title>
+    <title>Bandit Manchot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Machine.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1 class="title">🎰 Machine à Sous</h1>
+        <h1 class="title">🎰 Bandit Manchot</h1>
 
         <div id="machine">
             <!-- Porte-feuille -->
@@ -17,31 +17,27 @@
                 <span>Porte-feuille :</span>
                 <span id="wallet">1000</span>
             </div>
-
             <!-- Cellules -->
             <div class="cntCell">
-                <div id="cellA" class="cell"></div>
-                <div id="cellB" class="cell"></div>
-                <div id="cellC" class="cell"></div>
+                <div class="cell"><div class="reel" id="reelA"></div></div>
+                <div class="cell"><div class="reel" id="reelB"></div></div>
+                <div class="cell"><div class="reel" id="reelC"></div></div>
             </div>
-
             <!-- Mise + Bouton -->
             <div class="bet-section">
                 <label for="mise">💰 Mise :</label>
                 <input type="number" id="mise" name="mise" placeholder="Entre une mise" min="1">
                 <button class="btn" onclick="machine()">🎯 Miser</button>
             </div>
-
             <!-- Résultat -->
             <div class="result-section">
                 <strong>Résultat :</strong>
                 <div id="result"></div>
             </div>
         </div>
-
         <!-- Bouton retour -->
-        <button class="retour" onclick="location.href='/'">← Retour</button>
     </div>
+    <button class="retour" onclick="location.href='/'">← Retour</button>
 </body>
 <script src="{{ url_for('static', filename='js/Machine.js') }}"></script>
 </html>
