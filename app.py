@@ -19,6 +19,10 @@ def Morpion():
 def Roulette():
     return render_template("Roulette.html")
 
+@app.route("/Puissance-4")
+def Puissance4():
+    return render_template("Puissance4.html")
+
 @app.route("/test")
 def test():
     return render_template("test.html") 
