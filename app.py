@@ -23,9 +23,9 @@ def Roulette():
 def Puissance4():
     return render_template("Puissance4.html")
 
-@app.route("/test")
+@app.route("/Click")
 def test():
-    return render_template("test.html") 
+    return render_template("click.html") 
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

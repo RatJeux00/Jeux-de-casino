@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandit Manchot</title>
+    <title>🎰 Bandit Manchot - Royal Casino</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/BanditManchot.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
+    <div class="particles" id="particles"></div>
+
     <div class="container">
         <h1 class="title">🎰 Bandit Manchot</h1>
-
         <div id="machine">
-            <!-- Porte-feuille -->
             <div class="wallet">
-                <span>Porte-feuille :</span>
+                <span>💰 Porte-feuille :</span>
                 <span id="wallet">1000</span>
             </div>
-            <!-- Cellules -->
+
             <div class="cntCell">
-                <div class="cell"><div class="reel" id="reelA"></div></div>
-                <div class="cell"><div class="reel" id="reelB"></div></div>
-                <div class="cell"><div class="reel" id="reelC"></div></div>
+                <div class="cell"><div class="reel" id="reelA">🍎</div></div>
+                <div class="cell"><div class="reel" id="reelB">🍌</div></div>
+                <div class="cell"><div class="reel" id="reelC">🍊</div></div>
             </div>
-            <!-- Mise + Bouton -->
+
             <div class="bet-section">
                 <label for="mise">💰 Mise :</label>
-                <input type="number" id="mise" name="mise" placeholder="Entre une mise" min="1">
-                <button class="btn" onclick="machine()">🎯 Miser</button>
+                <input type="number" id="mise" name="mise" placeholder="Votre mise" min="1" max="1000">
+                <button class="btn" onclick="machine()">🎯 Jouer</button>
             </div>
-            <!-- Résultat -->
+
             <div class="result-section">
-                <strong>Résultat :</strong>
-                <div id="result"></div>
+                <strong>🎲 Résultat :</strong>
+                <div id="result">Bonne chance !</div>
             </div>
         </div>
-        <!-- Bouton retour -->
     </div>
+
     <button class="retour" onclick="location.href='/'">← Retour</button>
+    <script src="{{ url_for('static', filename='js/BanditManchot.js') }}"></script>
 </body>
-<script src="{{ url_for('static', filename='js/BanditManchot.js') }}"></script>
 </html>

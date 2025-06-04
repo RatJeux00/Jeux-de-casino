@@ -1,63 +1,136 @@
-const fruits = ["banane", "fraise", "orange", "pomme"];
-let wallet = 1000;
+let wallet = parseInt(localStorage.getItem('banditWallet')) || 1000;
+const fruits = ['🍎', '🍌', '🍊', '🍓', '🍇', '🥝'];
+let isSpinning = false;
 
-function createReelHTML() {
-    let html = '';
-    for (let i = 0; i < 10; i++) {
-        const fruit = fruits[Math.floor(Math.random() * fruits.length)];
-        html += `<img src="../static/images/BanditManchot/${fruit}.png" alt="${fruit}">`;
+function updateWallet() {
+    document.getElementById('wallet').textContent = wallet;
+    localStorage.setItem('banditWallet', wallet);
+}
+
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+        particlesContainer.appendChild(particle);
     }
-    return html;
 }
 
-async function spinReel(reelElement, finalFruit) {
-    reelElement.innerHTML = createReelHTML();
-    reelElement.innerHTML += `<img src="../static/images/BanditManchot/${finalFruit}.png" alt="${finalFruit}">`;
+function createFireworks() {
+    const container = document.createElement('div');
+    container.className = 'jackpot-effect';
+    document.body.appendChild(container);
 
-    reelElement.style.transition = 'none';
-    reelElement.style.transform = 'translateY(0px)';
-    void reelElement.offsetHeight;
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            const firework = document.createElement('div');
+            firework.className = 'jackpot-firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            container.appendChild(firework);
+        }, i * 100);
+    }
 
-    const totalHeight = (reelElement.children.length - 1) * 80;
-
-    reelElement.style.transition = 'transform 1.5s ease-out';
-    reelElement.style.transform = `translateY(-${totalHeight}px)`;
-
-    return new Promise(resolve => {
-        setTimeout(() => resolve(), 1600);
-    });
+    setTimeout(() => {
+        document.body.removeChild(container);
+    }, 3000);
 }
 
-async function machine() {
+function machine() {
+    if (isSpinning) return;
+
     const mise = parseInt(document.getElementById('mise').value);
     const resultDiv = document.getElementById('result');
-    const walletDiv = document.getElementById('wallet');
 
-    if (!mise || mise <= 0 || mise > wallet) {
-        resultDiv.textContent = "Mise invalide.";
+    if (!mise || mise < 1) {
+        resultDiv.textContent = "Veuillez entrer une mise valide !";
+        resultDiv.className = 'result-lose';
         return;
     }
 
-    const reels = [
-        document.getElementById('reelA'),
-        document.getElementById('reelB'),
-        document.getElementById('reelC')
+    if (mise > wallet) {
+        resultDiv.textContent = "Mise trop élevée ! Fonds insuffisants.";
+        resultDiv.className = 'result-lose';
+        return;
+    }
+
+    wallet -= mise;
+    updateWallet();
+    isSpinning = true;
+
+    const reels = ['reelA', 'reelB', 'reelC'];
+    reels.forEach(reel => {
+        document.getElementById(reel).classList.add('spinning');
+    });
+
+    const results = [
+        fruits[Math.floor(Math.random() * fruits.length)],
+        fruits[Math.floor(Math.random() * fruits.length)],
+        fruits[Math.floor(Math.random() * fruits.length)]
     ];
 
-    const finalFruits = reels.map(() => fruits[Math.floor(Math.random() * fruits.length)]);
+    setTimeout(() => {
+        reels.forEach((reel, index) => {
+            const reelElement = document.getElementById(reel);
+            reelElement.textContent = results[index];
+            reelElement.classList.remove('spinning');
+        });
 
-    for (let i = 0; i < reels.length; i++) {
-        await spinReel(reels[i], finalFruits[i]);
-    }
+        let gain = 0;
+        let message = "";
+        let resultClass = "";
 
-    const [a, b, c] = finalFruits;
-    if (a === b && b === c) {
-        resultDiv.textContent = "🎉 Tu as gagné !";
-        wallet += mise * 2;
-    } else {
-        resultDiv.textContent = "❌ Perdu...";
-        wallet -= mise;
-    }
+        if (results[0] === results[1] && results[1] === results[2]) {
+            gain = mise * 10;
+            message = `🎉 JACKPOT ! Vous gagnez ${gain} crédits !`;
+            resultClass = 'result-win';
+            createFireworks();
+        } else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
+            gain = mise * 2;
+            message = `✨ Paire ! Vous gagnez ${gain} crédits !`;
+            resultClass = 'result-win';
+        } else {
+            message = `💔 Perdu ! Vous perdez ${mise} crédits.`;
+            resultClass = 'result-lose';
+        }
 
-    walletDiv.textContent = wallet;
+        wallet += gain;
+        updateWallet();
+
+        resultDiv.textContent = message;
+        resultDiv.className = resultClass;
+
+        if (wallet <= 0) {
+            setTimeout(() => {
+                resultDiv.textContent = "💸 Plus de crédits ! Retournez à l'accueil pour en ajouter.";
+                resultDiv.className = 'result-lose';
+            }, 2000);
+        }
+
+        isSpinning = false;
+    }, 2000);
+
+    resultDiv.textContent = "🎰 Les rouleaux tournent...";
+    resultDiv.className = "";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateWallet();
+    createParticles();
+
+    document.getElementById('reelA').textContent = '🍎';
+    document.getElementById('reelB').textContent = '🍌';
+    document.getElementById('reelC').textContent = '🍊';
+});
+
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        machine();
+    }
+});
