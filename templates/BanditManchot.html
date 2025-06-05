@@ -6,38 +6,40 @@
     <title>🎰 Bandit Manchot - Royal Casino</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/BanditManchot.css') }}">
 </head>
-<body>
-
-    <div class="particles" id="particles"></div>
-
+<body>    <div id="particles" class="particles"></div>
+    
     <div class="container">
-        <h1 class="title">🎰 Bandit Manchot</h1>
+        <h1 class="title">🎰 Machine à Sous</h1>
+        
         <div id="machine">
             <div class="wallet">
-                <span>💰 Porte-feuille :</span>
-                <span id="wallet">1000</span>
+                Portefeuille: <span id="wallet">1000</span> crédits
             </div>
-
+            
             <div class="cntCell">
-                <div class="cell"><div class="reel" id="reelA">🍎</div></div>
-                <div class="cell"><div class="reel" id="reelB">🍌</div></div>
-                <div class="cell"><div class="reel" id="reelC">🍊</div></div>
+                <div class="cell">
+                    <div class="reel" id="reelA">🍎</div>
+                </div>
+                <div class="cell">
+                    <div class="reel" id="reelB">🍌</div>
+                </div>
+                <div class="cell">
+                    <div class="reel" id="reelC">🍊</div>
+                </div>
             </div>
-
+            
             <div class="bet-section">
-                <label for="mise">💰 Mise :</label>
-                <input type="number" id="mise" name="mise" placeholder="Votre mise" min="1" max="1000">
-                <button class="btn" onclick="machine()">🎯 Jouer</button>
+                <label for="mise">Mise:</label>
+                <input type="number" id="mise" value="10" min="1" max="1000">
+                <button class="btn" onclick="machine()">🎰 JOUER</button>
             </div>
-
+            
             <div class="result-section">
-                <strong>🎲 Résultat :</strong>
-                <div id="result">Bonne chance !</div>
+                <div id="result">Placez votre mise et tirez le levier !</div>
             </div>
         </div>
     </div>
-
-    <button class="retour" onclick="location.href='/'">← Retour</button>
+    <button class="retour btn " onclick="location.href='/'">← Retour</button>
     <script src="{{ url_for('static', filename='js/BanditManchot.js') }}"></script>
 </body>
 </html>

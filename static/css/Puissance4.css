@@ -1,0 +1,45 @@
+#puissance4 {
+    display: grid;
+    grid-template-columns: repeat(7, 80px);
+    grid-template-rows: repeat(6, 80px);
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: #002549;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ffffff33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cell.red {
+    background-color: red;
+    transform: scale(1.1);
+}
+
+.cell.yellow {
+    background-color: yellow;
+    transform: scale(1.1);
+}
+
+.cell:hover {
+    cursor: pointer;
+    background-color: #ffffff66;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+}
