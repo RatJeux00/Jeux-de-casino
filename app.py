@@ -1,5 +1,5 @@
-# fichier: app.py
-from flask import Flask, render_template
+import logging
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -26,6 +26,10 @@ def Puissance4():
 @app.route("/Click")
 def test():
     return render_template("click.html") 
+
+@app.before_request
+def log_request_info():
+    app.logger.info(f"Visite: {request.remote_addr} -> {request.url}")
 
 if __name__ == "__main__":
     import os
