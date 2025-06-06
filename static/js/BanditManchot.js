@@ -160,6 +160,8 @@ function createReelAnimation(reelId, finalSymbol, duration) {
 function machine() {
     if (isSpinning) return;
 
+    playSpinSound()
+
     const mise = parseInt(document.getElementById('mise').value);
     const resultDiv = document.getElementById('result');
     const machineDiv = document.getElementById('machine');
@@ -267,3 +269,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+//Son Spin
+function playSpinSound() {
+    const audio = new Audio('../static/sounds/Bandit-Manchot_spin.mp3');
+    audio.volume = 0.1;
+    audio.play().catch(() => {}); // Ignore les erreurs d'autoplay
+
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0; // Réinitialise la lecture
+    }, 4500);
+}
