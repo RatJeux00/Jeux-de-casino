@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Jeux</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}">
 </head>
 <body>
@@ -12,8 +13,8 @@
 
     <!-- Header -->
     <header class="header">
-        <h1 class="casino-title">🎰 ROYAL CASINO</h1>
-        <p class="subtitle">Votre destination ultime pour les jeux de casino</p>
+        <h1 class="title">🎰 ROYAL ARCADE</h1>
+        <p class="subtitle">Votre destination ultime pour les jeux d'arcade</p>
     </header>
 
     <!-- Section crédits -->
@@ -28,53 +29,66 @@
         <div class="games-grid">
             <!-- Roulette -->
             <div class="game-card fade-in" style="animation-delay: 0.2s;" onclick="playGame('roulette')">
-                <div class="game-icon">🎯</div>
-                <h3 class="game-title">Roulette Russe</h3>
-                <p class="game-description">Testez votre chance dans ce jeu de hasard palpitant. Misez sur votre destin !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">🎯</div>
+                    <h3 class="game-title">Roulette Russe</h3>
+                    <p class="game-description">Testez votre chance dans ce jeu de hasard palpitant. Misez sur votre destin !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
 
             <!-- Bandit Manchot -->
             <div class="game-card fade-in" style="animation-delay: 0.4s;" onclick="playGame('bandit')">
-                <div class="game-icon">🎰</div>
-                <h3 class="game-title">Machine à Sous</h3>
-                <p class="game-description">Faites tourner les rouleaux et tentez de décrocher le jackpot légendaire !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">🎰</div>
+                    <h3 class="game-title">Machine à Sous</h3>
+                    <p class="game-description">Faites tourner les rouleaux et tentez de décrocher le jackpot légendaire !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
 
             <!-- Morpion -->
             <div class="game-card fade-in" style="animation-delay: 0.6s;" onclick="playGame('morpion')">
-                <div class="game-icon">⭕</div>
-                <h3 class="game-title">Morpion</h3>
-                <p class="game-description">Défiez l'ordinateur dans ce classique stratégique. Trois en ligne pour gagner !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">⭕</div>
+                    <h3 class="game-title">Morpion</h3>
+                    <p class="game-description">Défiez l'ordinateur dans ce classique stratégique. Trois en ligne pour gagner !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
 
             <!-- Puissance 4 -->
             <div class="game-card fade-in" style="animation-delay: 0.8s;" onclick="playGame('puissance4')">
-                <div class="game-icon">🔴</div>
-                <h3 class="game-title">Puissance 4</h3>
-                <p class="game-description">Alignez quatre jetons de votre couleur pour remporter la victoire !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">🔴</div>
+                    <h3 class="game-title">Puissance 4</h3>
+                    <p class="game-description">Alignez quatre jetons de votre couleur pour remporter la victoire !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
 
             <!-- Click Game -->
             <div class="game-card fade-in" style="animation-delay: 1.0s;" onclick="playGame('click')">
-                <div class="game-icon">👆</div>
-                <h3 class="game-title">Click Challenge</h3>
-                <p class="game-description">Testez votre vitesse et précision dans ce défi addictif !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">👆</div>
+                    <h3 class="game-title">Click Challenge</h3>
+                    <p class="game-description">Testez votre vitesse et précision dans ce défi addictif !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
 
             <!-- Jeu de Cartes -->
             <div class="game-card fade-in" style="animation-delay: 1.2s;" onclick="playGame('cartes')">
-                <div class="game-icon">🃏</div>
-                <h3 class="game-title">Jeu de Cartes</h3>
-                <p class="game-description">Découvrez votre fortune avec nos cartes mystérieuses !</p>
-                <button class="play-button">Jouer Maintenant</button>
+                <div class="game">
+                    <div class="game-icon">🃏</div>
+                    <h3 class="game-title">Jeu de Cartes</h3>
+                    <p class="game-description">Découvrez votre fortune avec nos cartes mystérieuses !</p>
+                </div>
+                <button class="btn">Jouer Maintenant</button>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/Home.js') }}"></script>
 </body>
+<script src="{{ url_for('static', filename='js/Home.js') }}"></script>
+<script src=" {{ url_for('static', filename='js/style.js') }}"></script>
 </html>

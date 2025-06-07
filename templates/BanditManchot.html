@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎰 Bandit Manchot - Royal Casino</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/BanditManchot.css') }}">
 </head>
-<body>    <div id="particles" class="particles"></div>
+<body>
+    <!-- Particules d'arrière-plan -->
+    <div class="particles" id="particles"></div>
     
     <div class="container">
         <h1 class="title">🎰 Machine à Sous</h1>
@@ -40,6 +43,7 @@
         </div>
     </div>
     <button class="retour btn " onclick="location.href='/'">← Retour</button>
-    <script src="{{ url_for('static', filename='js/BanditManchot.js') }}"></script>
 </body>
+<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+<script src="{{ url_for('static', filename='js/BanditManchot.js') }}"></script>
 </html>

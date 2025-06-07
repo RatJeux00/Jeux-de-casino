@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Roulette.css') }}">
 </head>
 <body>
+    <!-- Particules d'arrière-plan -->
+    <div class="particles" id="particles"></div>
     <div class="container">
         <h1 class="title">Roulette Russe 🎲🔫</h1>
         <div id="Roulette">
@@ -23,7 +25,8 @@
         </div>
         <p id="result"></p>
     </div>
-    <button class="retour" onclick="location.href='/'">← Retour</button>
-    <script src="{{ url_for('static', filename='js/Roulette.js')}}"></script>
+    <button class="retour btn" onclick="location.href='/'">← Retour</button>
 </body>
+<script src=" {{ url_for('static', filename='js/style.js') }}"></script>
+<script src="{{ url_for('static', filename='js/Roulette.js')}}"></script>
 </html>

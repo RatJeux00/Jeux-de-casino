@@ -1,4 +1,3 @@
-import logging
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -24,12 +23,12 @@ def Puissance4():
     return render_template("Puissance4.html")
 
 @app.route("/Click")
-def test():
+def Click():
     return render_template("click.html") 
 
-@app.before_request
-def log_request_info():
-    app.logger.info(f"Visite: {request.remote_addr} -> {request.url}")
+@app.route("/Cartes")
+def Carte():
+    return render_template("Cartes.html")
 
 if __name__ == "__main__":
     import os

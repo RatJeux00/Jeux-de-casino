@@ -28,7 +28,7 @@ function playGame(gameType) {
         'morpion': '/Morpion',
         'puissance4': '/Puissance4',
         'click': '/Click',
-        'cartes': '/jeu de carte'
+        'cartes': '/Cartes'
     };
     
     if (gameUrls[gameType]) {
@@ -39,22 +39,6 @@ function playGame(gameType) {
         setTimeout(() => {
             window.location.href = gameUrls[gameType];
         }, 300);
-    }
-}
-
-// Génération des particules
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 6 + 's';
-        particle.style.animationDuration = (3 + Math.random() * 3) + 's';
-        particlesContainer.appendChild(particle);
     }
 }
 
@@ -85,7 +69,6 @@ function playAmbientSound() {
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
     updateCreditsDisplay();
-    createParticles();
     animateOnScroll();
     
     // Effet de transition d'entrée
