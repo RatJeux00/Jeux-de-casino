@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <!-- Particules d'arrière-plan -->
+    <div class="particles" id="particles"></div>
+
     <div class="container">
         <h1 class="title">🔴Puissance 4🔵</h1>
         <div id="puissance4"></div>
         <div id="message"></div>
     </div>
-    <button class="retour" onclick="location.href='/'">← Retour</button>
+    <button class="retour btn" onclick="location.href='/'">← Retour</button>
 </body>
+<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+<script src="{{ url_for('static', filename='js/Puissance4.js') }}"></script>
 </html>

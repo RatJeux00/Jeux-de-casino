@@ -1,4 +1,23 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
 #puissance4 {
+    max-width: 750px ;
     display: grid;
     grid-template-columns: repeat(7, 80px);
     grid-template-rows: repeat(6, 80px);
@@ -9,6 +28,11 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.title {
+    font-size: 2rem;
+    padding-bottom: 25px;
 }
 
 .cell {
@@ -34,7 +58,6 @@
 
 .cell:hover {
     cursor: pointer;
-    background-color: #ffffff66;
 }
 
 #message {

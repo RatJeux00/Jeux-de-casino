@@ -2,10 +2,11 @@ const rows = 6;
 const cols = 7;
 const grid = [];
 let currentPlayer = 'red';
-const board = document.getElementById('JeuxP');
+const board = document.getElementById('puissance4');
 const message = document.getElementById('message');
 
 function createGrid() {
+    console.log('grid create')
     for (let r = 0; r < rows; r++) {
         grid[r] = [];
         for (let c = 0; c < cols; c++) {
@@ -17,7 +18,6 @@ function createGrid() {
             grid[r][c] = cell;
         }
     }
-
     board.addEventListener('click', handleClick);
 }
 
@@ -28,7 +28,7 @@ function handleClick(e) {
         if (!grid[r][col].classList.contains('red') && !grid[r][col].classList.contains('yellow')) {
             grid[r][col].classList.add(currentPlayer);
             if (checkWin(r, col)) {
-                message.textContent = `${currentPlayer === 'red' ? '🔴' : '🔵'} a gagné !`;
+                message.textContent = `${currentPlayer === 'red' ? '🔴' : '🟡'} a gagné !`;
                 board.removeEventListener('click', handleClick);
             } else {
                 currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
