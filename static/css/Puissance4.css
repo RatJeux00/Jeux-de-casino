@@ -4,8 +4,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Arial, sans-serif;
+    color: white;
 }
-
 
 .container{
     display: flex;
@@ -14,25 +16,53 @@ body {
     justify-content: center;
     align-content: center;
     flex-wrap: nowrap;
+    position: relative;
+}
+
+/* Zone de prévisualisation */
+#preview-zone {
+    width: 750px;
+    height: 100px;
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#preview-piece {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    transition: left 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+#preview-piece.red {
+    background-color: #ff4757;
+}
+
+#preview-piece.yellow {
+    background-color: #feca57;
 }
 
 #puissance4 {
-    max-width: 750px ;
+    max-width: 750px;
     display: grid;
     grid-template-columns: repeat(7, 80px);
     grid-template-rows: repeat(6, 80px);
     gap: 5px;
     justify-content: center;
     align-items: center;
-    background-color: #002549;
+     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.title {
-    font-size: 2rem;
-    padding-bottom: 25px;
+    position: relative;
 }
 
 .cell {
@@ -44,20 +74,53 @@ body {
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s, transform 0.3s;
-}
-
-.cell.red {
-    background-color: red;
-    transform: scale(1.1);
-}
-
-.cell.yellow {
-    background-color: yellow;
-    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .cell:hover {
-    cursor: pointer;
+    background-color: #ffffff44;
+}
+
+.cell.red {
+    background-color: #ff4757;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+}
+
+.cell.yellow {
+    background-color: #feca57;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
+}
+
+/* Animation de chute */
+.falling-piece {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border: 3px solid rgba(255,255,255,0.3);
+    pointer-events: none;
+}
+
+.falling-piece.red {
+    background-color: #ff4757;
+}
+
+.falling-piece.yellow {
+    background-color: #feca57;
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1.05); }
+}
+
+.cell.bounce {
+    animation: bounce 0.3s ease;
 }
 
 #message {
@@ -65,4 +128,5 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     text-shadow: 0 0 5px black;
+    text-align: center;
 }

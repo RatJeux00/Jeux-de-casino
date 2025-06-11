@@ -13,17 +13,25 @@
     <div class="container">
         <h1 class="title">Roulette Russe 🎲🔫</h1>
         <div id="Roulette">
-            <div id="Bot" class="character pulse"></div>
-            <div id="RevolverWrapper" class="rotate-left">
-                <div id="Revolver" class="revolver"></div>
+            <div class="cntRoulette">
+                <div class="cntCharacter">
+                    <div id="Bot" class="character pulse"></div>
+                </div>
+                <div id="RevolverWrapper" class="rotate-left">
+                    <div id="Revolver" class="revolver"></div>
+                </div>
+                <div class="cntCharacter">
+                    <div id="Player" class="character pulse"></div>
+                </div>
             </div>
-            <div id="Player" class="character pulse"></div>
+            <div class="result-section">
+                <p id="result"></p>
+            </div>
         </div>
         <div class="button">
             <button id="spinButton" class="btn">🔁 Recharger</button>
             <button id="triggerButton" class="btn">🔫 Gâchette</button>
         </div>
-        <p id="result"></p>
     </div>
     <button class="retour btn" onclick="location.href='/'">← Retour</button>
 </body>

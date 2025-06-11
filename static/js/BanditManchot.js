@@ -52,7 +52,6 @@ function createReelAnimation(reelId, finalSymbol, duration) {
         border-radius: 12px;
     `;
     
-    // Créer le contenu qui va défiler
     const scrollContent = document.createElement('div');
     scrollContent.style.cssText = `
         display: flex;

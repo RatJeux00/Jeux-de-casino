@@ -13,22 +13,6 @@ body {
     width: 90%;
 }
 
-.title {
-    font-size: 3rem;
-    margin-bottom: 30px;
-    background: linear-gradient(45deg, #ffd700, #ffed4e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-    animation: neonGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes neonGlow {
-    from { filter: drop-shadow(0 0 20px #ffd700); }
-    to { filter: drop-shadow(0 0 40px #ffd700); }
-}
-
 #machine {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     backdrop-filter: blur(15px);
