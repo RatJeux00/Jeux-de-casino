@@ -14,7 +14,23 @@ body {
 }
 
 #Roulette {
-    background-color: rgba(255, 255, 255, 0.08);
+    display: flex;
+     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 20px #000;
+    perspective: 1000px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    flex-direction: column;
+}
+
+.cntRoulette {
+    background-color: rgba(36, 37, 83, 0.322);
     border-radius: 20px;
     width: 100%;
     max-width: 600px;
@@ -35,6 +51,18 @@ body {
     background-position: center;
     transition: transform 0.3s ease-in-out;
     flex-shrink: 0;
+}
+
+.cntCharacter{
+    display: flex;
+    width: 84px;
+    height: 84px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(34, 59, 128, 0.432);
+    border: 3px solid #ffd700;
+    border-radius: 15px;
+box-shadow: 0 0 20px #000;
 }
 
 .container {

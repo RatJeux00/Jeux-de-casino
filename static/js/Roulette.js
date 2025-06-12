@@ -27,7 +27,7 @@ let spin = () => {
 
     // Redémarre proprement l'animation
     revolver.classList.remove("reload-spin");
-    void revolver.offsetWidth; // force reflow
+    void revolver.offsetWidth;
     revolver.classList.add("reload-spin");
 };
 
