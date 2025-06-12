@@ -200,3 +200,19 @@
         transform: translateY(0);
     }
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .casino-title {
+        font-size: 3rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .game-card {
+        padding: 20px;
+    }
+}

@@ -3,6 +3,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
@@ -11,6 +13,7 @@ body {
     text-align: center;
     max-width: 600px;
     width: 90%;
+    padding-bottom: 70px;
 }
 
 .title {
@@ -99,7 +102,6 @@ body {
     transition: all 0.5s ease;
 }
 
-/* CORRECTION: Styles pour l'animation de roulement */
 .reel-scroll-container {
     z-index: 3;
     background: transparent;
@@ -116,7 +118,6 @@ body {
     margin: 2px 0;
 }
 
-/* Animation de machine qui vibre pendant le spin */
 #machine.spinning {
     animation: machineVibration 0.1s infinite;
 }
@@ -163,7 +164,6 @@ label {
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
-
 .result-section {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
@@ -203,31 +203,6 @@ label {
     50% { transform: scale(0.9); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2rem;
-    }
-    
-    .cntCell {
-        gap: 10px;
-    }
-    
-    .cell {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .reel {
-        font-size: 2.5rem;
-    }
-    
-    .bet-section {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
 /* Effets de jackpot */
 .jackpot-effect {
     position: fixed;
@@ -260,5 +235,169 @@ label {
     100% {
         transform: scale(2);
         opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 80px 15px 15px 15px; /* Padding top pour éviter le bouton retour */
+    }
+    
+    .title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    #machine {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .cntCell {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .cell {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .reel {
+        font-size: 2.5rem;
+    }
+    
+    .bet-section {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .wallet {
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    
+    #wallet {
+        font-size: 1.5rem;
+    }
+    
+    .result-section {
+        padding: 15px;
+    }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 480px) {
+    body {
+        padding: 70px 10px 10px 10px;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    #machine {
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .cntCell {
+        gap: 8px;
+    }
+    
+    .cell {
+        width: 70px;
+        height: 70px;
+        border-width: 2px;
+    }
+    
+    .reel {
+        font-size: 2rem;
+    }
+    
+    .wallet {
+        font-size: 1rem;
+        padding: 8px;
+    }
+    
+    #wallet {
+        font-size: 1.3rem;
+    }
+    
+    #mise {
+        width: 120px;
+        padding: 8px 12px;
+        font-size: 1rem;
+    }
+    
+    label {
+        font-size: 1rem;
+    }
+    
+    .bet-section {
+        padding: 12px;
+    }
+    
+    .result-section {
+        padding: 12px;
+        min-height: 60px;
+    }
+    
+    #result {
+        font-size: 1.1rem;
+    }
+    
+}
+
+/* Pour les écrans en mode paysage sur mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 60px 10px 10px 10px;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    #machine {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .cntCell {
+        margin-bottom: 15px;
+    }
+    
+    .cell {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .reel {
+        font-size: 1.8rem;
+    }
+    
+    .wallet {
+        margin-bottom: 15px;
+        padding: 8px;
+    }
+    
+    .bet-section {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .result-section {
+        padding: 10px;
+        min-height: 50px;
     }
 }

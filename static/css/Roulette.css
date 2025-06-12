@@ -9,12 +9,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 #Roulette {
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 20px;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 250px;
     margin: 0 auto;
     display: flex;
@@ -22,6 +25,7 @@ body {
     align-items: center;
     box-shadow: 0 0 20px #000;
     perspective: 1000px;
+    padding: 20px;
 }
 
 .character {
@@ -30,15 +34,25 @@ body {
     background-size: cover;
     background-position: center;
     transition: transform 0.3s ease-in-out;
+    flex-shrink: 0;
 }
 
 .container {
     display: flex;
-    flex-direction: column; /* pour que les éléments s'empilent verticalement */
-    justify-content: center; /* centre verticalement */
-    align-items: center; /* centre horizontalement */
-    height: 100vh; /* hauteur de l'écran */
-    text-align: center; /* aligne le texte au centre */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 30px;
+    word-wrap: break-word;
 }
 
 #Bot {
@@ -55,6 +69,7 @@ body {
 
 #RevolverWrapper {
     transition: transform 0.5s ease;
+    flex-shrink: 0;
 }
 
 .rotate-left {
@@ -80,11 +95,15 @@ body {
     animation: pulse 2s infinite;
 }
 
+
 #result {
     font-size: 20px;
     margin-top: 20px;
     animation: fadeIn 0.5s;
+    word-wrap: break-word;
+    max-width: 100%;
 }
+
 
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
@@ -94,4 +113,124 @@ body {
 @keyframes reload-spin {
     0% { transform: rotate(0); }
     100% { transform: rotate(-720deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive */
+
+/* Tablettes en mode portrait */
+@media (max-width: 768px) {
+    #Roulette {
+        height: 200px;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .character {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .revolver {
+        width: 70px;
+        height: 70px;
+    }
+    
+    #result {
+        font-size: 18px;
+    }
+}
+
+/* Smartphones en mode portrait */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    #Roulette {
+        height: 160px;
+        padding: 10px;
+        border-radius: 12px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .character {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .revolver {
+        width: 60px;
+        height: 60px;
+    }
+      
+    #result {
+        font-size: 16px;
+        margin-top: 15px;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 320px) {
+    #Roulette {
+        height: 140px;
+        padding: 8px;
+    }
+    
+    .character {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .revolver {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #result {
+        font-size: 14px;
+    }
+}
+
+/* Orientation paysage pour smartphones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container {
+        min-height: auto;
+        padding: 10px;
+    }
+    
+    #Roulette {
+        height: 120px;
+        margin: 10px auto;
+    }
+    
+    .character {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .revolver {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .cntButton {
+        margin-top: 10px;
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    #result {
+        font-size: 14px;
+        margin-top: 10px;
+    }
 }
