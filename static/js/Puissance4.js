@@ -7,6 +7,24 @@ const message = document.getElementById('message');
 const previewPiece = document.getElementById('preview-piece');
 const previewZone = document.getElementById('preview-zone');
 
+function getScreenSize() {
+    const width = window.innerWidth;
+    if (width <= 360) return 'xs';
+    if (width <= 480) return 'sm';
+    if (width <= 768) return 'md';
+    return 'lg';
+}
+
+function getCellSize() {
+    const screenSize = getScreenSize();
+    switch (screenSize) {
+        case 'xs': return { cell: 40, gap: 2, piece: 35 };
+        case 'sm': return { cell: 45, gap: 3, piece: 40 };
+        case 'md': return { cell: 65, gap: 4, piece: 55 };
+        default: return { cell: 80, gap: 5, piece: 70 };
+    }
+}
+
 function createGrid() {
     for (let r = 0; r < rows; r++) {
         grid[r] = [];
@@ -20,10 +38,11 @@ function createGrid() {
         }
     }
     board.addEventListener('click', handleClick);
-    board.addEventListener('mousemove', handleMouseMove);
     
-    // Position initiale de la pièce de prévisualisation
-    updatePreviewPiece(3); // colonne du milieu
+    if (getScreenSize() === 'lg') {
+        board.addEventListener('mousemove', handleMouseMove);
+        updatePreviewPiece(3);
+    }
 }
 
 function handleMouseMove(e) {
@@ -33,15 +52,12 @@ function handleMouseMove(e) {
 }
 
 function updatePreviewPiece(col) {
-    // Vérifier que les éléments existent
-    if (!previewPiece || !previewZone) return;
+    if (!previewPiece || !previewZone || getScreenSize() !== 'lg') return;
     
-    // Calculer la position de la pièce de prévisualisation
-    const cellWidth = 80 + 5; // largeur de cellule + gap
-    const boardStartX = (previewZone.offsetWidth - (cols * cellWidth - 5)) / 2;
-    
-    // Utiliser une taille fixe pour éviter l'erreur si offsetWidth n'est pas disponible
-    const pieceWidth = previewPiece.offsetWidth || 70; // valeur par défaut de 70px
+    const sizes = getCellSize();
+    const cellWidth = sizes.cell + sizes.gap;
+    const boardStartX = (previewZone.offsetWidth - (cols * cellWidth - sizes.gap)) / 2;
+    const pieceWidth = previewPiece.offsetWidth || sizes.piece;
     const pieceX = boardStartX + (col * cellWidth) + (cellWidth / 2) - (pieceWidth / 2);
     
     previewPiece.style.left = pieceX + 'px';
@@ -52,12 +68,10 @@ function handleClick(e) {
     if (!e.target.classList.contains('cell')) return;
     const col = parseInt(e.target.dataset.col);
     
-    // Vérifier si la colonne est pleine
     if (grid[0][col].classList.contains('red') || grid[0][col].classList.contains('yellow')) {
-        return; // Colonne pleine
+        return;
     }
     
-    // Trouver la ligne où la pièce va tomber
     let targetRow = -1;
     for (let r = rows - 1; r >= 0; r--) {
         if (!grid[r][col].classList.contains('red') && !grid[r][col].classList.contains('yellow')) {
@@ -67,32 +81,33 @@ function handleClick(e) {
     }
     
     if (targetRow !== -1) {
-        // Désactiver les clics pendant l'animation
         board.removeEventListener('click', handleClick);
         
-        // Créer et animer la pièce qui tombe
         animateFallingPiece(col, targetRow, () => {
-            // Callback exécuté après l'animation
             grid[targetRow][col].classList.add(currentPlayer);
             grid[targetRow][col].classList.add('bounce');
             
-            // Retirer l'animation bounce après un délai
             setTimeout(() => {
                 grid[targetRow][col].classList.remove('bounce');
             }, 300);
             
             if (checkWin(targetRow, col)) {
                 message.textContent = `${currentPlayer === 'red' ? '🔴 Rouge' : '🟡 Jaune'} a gagné !`;
-                board.removeEventListener('mousemove', handleMouseMove);
-                if (previewPiece) previewPiece.style.display = 'none';
+                if (getScreenSize() === 'lg') {
+                    board.removeEventListener('mousemove', handleMouseMove);
+                    if (previewPiece) previewPiece.style.display = 'none';
+                }
             } else if (checkDraw()) {
                 message.textContent = "Match nul ! 🤝";
-                board.removeEventListener('mousemove', handleMouseMove);
-                if (previewPiece) previewPiece.style.display = 'none';
+                if (getScreenSize() === 'lg') {
+                    board.removeEventListener('mousemove', handleMouseMove);
+                    if (previewPiece) previewPiece.style.display = 'none';
+                }
             } else {
                 currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
-                updatePreviewPiece(col);
-                // Réactiver les clics
+                if (getScreenSize() === 'lg') {
+                    updatePreviewPiece(col);
+                }
                 board.addEventListener('click', handleClick);
             }
         });
@@ -100,33 +115,38 @@ function handleClick(e) {
 }
 
 function animateFallingPiece(col, targetRow, callback) {
-    // Créer la pièce qui tombe
     const fallingPiece = document.createElement('div');
     fallingPiece.classList.add('falling-piece', currentPlayer);
     
-    // Calculer les positions
+    const sizes = getCellSize();
     const boardRect = board.getBoundingClientRect();
-    const cellSize = 80 + 5; // taille cellule + gap
-    const startX = boardRect.left + (col * cellSize) + 15; // +15 pour centrer (80-70)/2 + 10 padding
-    const startY = boardRect.top - 100; // Commencer au-dessus du plateau
-    const endY = boardRect.top + (targetRow * cellSize) + 15; // Position finale
+    const cellSize = sizes.cell + sizes.gap;
+    const pieceOffset = (sizes.cell - sizes.piece) / 2;
+    const boardPadding = getScreenSize() === 'lg' ? 10 : (getScreenSize() === 'md' ? 8 : (getScreenSize() === 'sm' ? 6 : 5));
     
-    // Positionner la pièce
+    const startX = boardRect.left + (col * cellSize) + pieceOffset + boardPadding;
+    const startY = boardRect.top - (sizes.piece + 20);
+    const endY = boardRect.top + (targetRow * cellSize) + pieceOffset + boardPadding;
+    
     fallingPiece.style.position = 'fixed';
     fallingPiece.style.left = startX + 'px';
     fallingPiece.style.top = startY + 'px';
+    fallingPiece.style.width = sizes.piece + 'px';
+    fallingPiece.style.height = sizes.piece + 'px';
     
     document.body.appendChild(fallingPiece);
     
-    // Animation de chute avec effet de rebond
-    const duration = 400 + (targetRow * 80); // Plus long pour les rangées du bas
+    const baseDuration = getScreenSize() === 'lg' ? 400 : (getScreenSize() === 'md' ? 350 : 300);
+    const rowMultiplier = getScreenSize() === 'lg' ? 80 : (getScreenSize() === 'md' ? 60 : 50);
+    const duration = baseDuration + (targetRow * rowMultiplier);
+    
     fallingPiece.animate([
         { 
             top: startY + 'px',
             transform: 'scale(1)'
         },
         { 
-            top: (endY - 20) + 'px',
+            top: (endY - (getScreenSize() === 'lg' ? 20 : 15)) + 'px',
             transform: 'scale(1.1)',
             offset: 0.8
         },
@@ -138,9 +158,7 @@ function animateFallingPiece(col, targetRow, callback) {
         duration: duration,
         easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
     }).addEventListener('finish', () => {
-        // Supprimer la pièce qui tombe
         document.body.removeChild(fallingPiece);
-        // Exécuter le callback
         callback();
     });
 }
@@ -155,17 +173,16 @@ function checkDraw() {
 }
 
 function checkWin(row, col) {
-    return checkDirection(row, col, 1, 0) ||  // horizontal
-            checkDirection(row, col, 0, 1) ||  // vertical
-            checkDirection(row, col, 1, 1) ||  // diagonal descendante
-            checkDirection(row, col, 1, -1);   // diagonal montante
+    return checkDirection(row, col, 1, 0) ||
+            checkDirection(row, col, 0, 1) ||
+            checkDirection(row, col, 1, 1) ||
+            checkDirection(row, col, 1, -1);
 }
 
 function checkDirection(row, col, dr, dc) {
     const color = grid[row][col].classList.contains('red') ? 'red' : 'yellow';
     let count = 1;
 
-    // Compter dans une direction
     for (let i = 1; i < 4; i++) {
         const r = row + i * dr;
         const c = col + i * dc;
@@ -174,7 +191,6 @@ function checkDirection(row, col, dr, dc) {
         } else break;
     }
 
-    // Compter dans l'autre direction
     for (let i = 1; i < 4; i++) {
         const r = row - i * dr;
         const c = col - i * dc;
@@ -186,7 +202,18 @@ function checkDirection(row, col, dr, dc) {
     return count >= 4;
 }
 
-// Initialiser le jeu quand le DOM est prêt
+window.addEventListener('resize', () => {
+    if (getScreenSize() === 'lg' && previewPiece) {
+        if (!board.onmousemove) {
+            board.addEventListener('mousemove', handleMouseMove);
+        }
+        previewPiece.style.display = 'block';
+    } else if (previewPiece) {
+        board.removeEventListener('mousemove', handleMouseMove);
+        previewPiece.style.display = 'none';
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     createGrid();
 });

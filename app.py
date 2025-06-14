@@ -24,11 +24,11 @@ def Puissance4():
 
 @app.route("/Click")
 def Click():
-    return render_template("click.html") 
+    return render_template("PDC.html") 
 
 @app.route("/Cartes")
 def Carte():
-    return render_template("Cartes.html")
+    return render_template("PDC.html")
 
 if __name__ == "__main__":
     import os

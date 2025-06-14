@@ -15,6 +15,7 @@ body {
 
 #Roulette {
     display: flex;
+    flex-direction: column;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     border-radius: 25px;
     width: 700px;
@@ -61,7 +62,7 @@ body {
     background-color: rgba(34, 59, 128, 0.432);
     border: 3px solid #ffd700;
     border-radius: 15px;
-box-shadow: 0 0 20px #000;
+    box-shadow: 0 0 20px #000;
 }
 
 .container {
@@ -191,22 +192,33 @@ box-shadow: 0 0 20px #000;
     }
     
     #Roulette {
-        width: 350px;
-        height: 300px;
+        width: 300px;
+        height: 150px;
         padding: 10px;
         border-radius: 12px;
         flex-direction: row;
         justify-content: space-between;
     }
     
+    .cntRoulette{
+        width: 250px;
+        height: 100px;
+    }
+
+    .cntCharacter{
+        width: 64px;
+        height: 64px;
+        border-radius: 10px;
+    }
+
     .character {
-        width: 48px;
-        height: 48px;
+        width: 32px;
+        height: 32px;
     }
     
     .revolver {
-        width: 60px;
-        height: 60px;
+        width: 32px;
+        height: 32px;
     }
       
     #result {
