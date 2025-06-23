@@ -24,7 +24,7 @@ def Puissance4():
 
 @app.route("/Click")
 def Click():
-    return render_template("PDC.html") 
+    return render_template("Click.html") 
 
 @app.route("/Cartes")
 def Carte():
